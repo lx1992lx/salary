@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/salary:root
+    username: root
+    password: 123qwe
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  type-aliases-package: top.simuhunluo.salary.dao.model
+  mapper-locations: classpath:conf/mybatis/mapper/*.xml
+
