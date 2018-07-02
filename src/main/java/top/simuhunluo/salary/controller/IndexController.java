@@ -35,7 +35,7 @@ public class IndexController {
         User user1=new User();
         user1.setUid("1234");
         user1.setName("scc");
-        user1.setAge(23);
+        user1.setAge(213);
         List<User> list=new ArrayList<>();
         list.add(user);
         list.add(user1);
