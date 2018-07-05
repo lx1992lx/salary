@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.simuhunluo.salary.dao.mapper.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="top.simuhunluo.salary.dao.model.Company" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="jobnum" property="jobnum" jdbcType="INTEGER" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="searchcount" property="searchcount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="top.simuhunluo.salary.dao.model.Company" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, companyname, url, jobnum, industry, place, searchcount
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.simuhunluo.salary.dao.model.Company" >
+    insert into company (cid, companyname, url, 
+      jobnum, industry, place, 
+      searchcount, description)
+    values (#{cid,jdbcType=INTEGER}, #{companyname,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{jobnum,jdbcType=INTEGER}, #{industry,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, 
+      #{searchcount,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.simuhunluo.salary.dao.model.Company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="companyname != null" >
+        companyname,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="jobnum != null" >
+        jobnum,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="searchcount != null" >
+        searchcount,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnum != null" >
+        #{jobnum,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="searchcount != null" >
+        #{searchcount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.simuhunluo.salary.dao.model.Company" >
+    update company
+    <set >
+      <if test="companyname != null" >
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="jobnum != null" >
+        jobnum = #{jobnum,jdbcType=INTEGER},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="searchcount != null" >
+        searchcount = #{searchcount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.simuhunluo.salary.dao.model.Company" >
+    update company
+    set companyname = #{companyname,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      jobnum = #{jobnum,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      searchcount = #{searchcount,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.Company" >
+    update company
+    set companyname = #{companyname,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      jobnum = #{jobnum,jdbcType=INTEGER},
+      industry = #{industry,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      searchcount = #{searchcount,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

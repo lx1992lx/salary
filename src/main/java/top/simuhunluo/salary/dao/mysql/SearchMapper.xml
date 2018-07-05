@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.simuhunluo.salary.dao.mapper.SearchMapper" >
+  <resultMap id="BaseResultMap" type="top.simuhunluo.salary.dao.model.Search" >
+    <id column="searchid" property="searchid" jdbcType="INTEGER" />
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    searchid, cid, companyname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="top.simuhunluo.salary.dao.model.SearchKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from search
+    where searchid = #{searchid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.SearchKey" >
+    delete from search
+    where searchid = #{searchid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.simuhunluo.salary.dao.model.Search" >
+    insert into search (searchid, cid, companyname
+      )
+    values (#{searchid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{companyname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.simuhunluo.salary.dao.model.Search" >
+    insert into search
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="searchid != null" >
+        searchid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="companyname != null" >
+        companyname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="searchid != null" >
+        #{searchid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.simuhunluo.salary.dao.model.Search" >
+    update search
+    <set >
+      <if test="companyname != null" >
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where searchid = #{searchid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.Search" >
+    update search
+    set companyname = #{companyname,jdbcType=VARCHAR}
+    where searchid = #{searchid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.simuhunluo.salary.dao.mapper.LatestSalaryMapper" >
+  <resultMap id="BaseResultMap" type="top.simuhunluo.salary.dao.model.LatestSalary" >
+    <id column="latestid" property="latestid" jdbcType="INTEGER" />
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+    <result column="jobname" property="jobname" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    latestid, sid, companyname, jobname, salary, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="top.simuhunluo.salary.dao.model.LatestSalaryKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from latestsalary
+    where latestid = #{latestid,jdbcType=INTEGER}
+      and sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.LatestSalaryKey" >
+    delete from latestsalary
+    where latestid = #{latestid,jdbcType=INTEGER}
+      and sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.simuhunluo.salary.dao.model.LatestSalary" >
+    insert into latestsalary (latestid, sid, companyname, 
+      jobname, salary, createtime
+      )
+    values (#{latestid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{companyname,jdbcType=VARCHAR}, 
+      #{jobname,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.simuhunluo.salary.dao.model.LatestSalary" >
+    insert into latestsalary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="latestid != null" >
+        latestid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="companyname != null" >
+        companyname,
+      </if>
+      <if test="jobname != null" >
+        jobname,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="latestid != null" >
+        #{latestid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null" >
+        #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.simuhunluo.salary.dao.model.LatestSalary" >
+    update latestsalary
+    <set >
+      <if test="companyname != null" >
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null" >
+        jobname = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where latestid = #{latestid,jdbcType=INTEGER}
+      and sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.LatestSalary" >
+    update latestsalary
+    set companyname = #{companyname,jdbcType=VARCHAR},
+      jobname = #{jobname,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where latestid = #{latestid,jdbcType=INTEGER}
+      and sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

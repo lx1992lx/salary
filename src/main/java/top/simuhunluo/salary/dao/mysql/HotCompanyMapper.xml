@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.simuhunluo.salary.dao.mapper.HotCompanyMapper" >
+  <resultMap id="BaseResultMap" type="top.simuhunluo.salary.dao.model.HotCompany" >
+    <id column="hotid" property="hotid" jdbcType="INTEGER" />
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+    <result column="pv" property="pv" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="top.simuhunluo.salary.dao.model.HotCompany" extends="BaseResultMap" >
+    <result column="hotjobs" property="hotjobs" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hotid, cid, companyname, pv, createtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    hotjobs
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="top.simuhunluo.salary.dao.model.HotCompanyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hotcompany
+    where hotid = #{hotid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.HotCompanyKey" >
+    delete from hotcompany
+    where hotid = #{hotid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.simuhunluo.salary.dao.model.HotCompany" >
+    insert into hotcompany (hotid, cid, companyname, 
+      pv, createtime, hotjobs
+      )
+    values (#{hotid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{companyname,jdbcType=VARCHAR}, 
+      #{pv,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{hotjobs,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.simuhunluo.salary.dao.model.HotCompany" >
+    insert into hotcompany
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hotid != null" >
+        hotid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="companyname != null" >
+        companyname,
+      </if>
+      <if test="pv != null" >
+        pv,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="hotjobs != null" >
+        hotjobs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hotid != null" >
+        #{hotid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pv != null" >
+        #{pv,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hotjobs != null" >
+        #{hotjobs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.simuhunluo.salary.dao.model.HotCompany" >
+    update hotcompany
+    <set >
+      <if test="companyname != null" >
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pv != null" >
+        pv = #{pv,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hotjobs != null" >
+        hotjobs = #{hotjobs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where hotid = #{hotid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.simuhunluo.salary.dao.model.HotCompany" >
+    update hotcompany
+    set companyname = #{companyname,jdbcType=VARCHAR},
+      pv = #{pv,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      hotjobs = #{hotjobs,jdbcType=LONGVARCHAR}
+    where hotid = #{hotid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.simuhunluo.salary.dao.model.HotCompany" >
+    update hotcompany
+    set companyname = #{companyname,jdbcType=VARCHAR},
+      pv = #{pv,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where hotid = #{hotid,jdbcType=INTEGER}
+      and cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

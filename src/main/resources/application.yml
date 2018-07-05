@@ -3,12 +3,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/salary:root
-    username: root
+    url: jdbc:mysql://111.230.224.44:3306/salary
+    username: salary
     password: 123qwe
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
   type-aliases-package: top.simuhunluo.salary.dao.model
-  mapper-locations: classpath:conf/mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
 
