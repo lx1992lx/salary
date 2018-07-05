@@ -25,7 +25,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("校招社招薪水api文档")
+                .title("api文档")
                 .description("swagger作为API开发工具")
                 .version("1.0.0")
                 .build();

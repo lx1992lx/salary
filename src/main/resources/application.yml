@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+
 spring:
   datasource:
     url: jdbc:mysql://111.230.224.44:3306/salary
@@ -9,6 +10,5 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
-  type-aliases-package: top.simuhunluo.salary.dao.model
   mapper-locations: classpath:mybatis/mapper/*.xml
-
+  configLocation: classpath:mybatis/mybatis-config.xml
